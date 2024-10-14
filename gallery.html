@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Casselberry Chronicle</h1>
+        <nav>
+            <div class="hamburger" aria-label="Toggle navigation">☰</div>
+            <ul>
+                <li><a href="index.html" aria-label="Home">Home</a></li>
+                <li><a href="article.html" aria-label="Article">Article</a></li>
+                <li><a href="gallery.html" aria-label="Gallery">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="photo-gallery">
+        <div class="gallery-container">
+            <button id="prev" aria-label="Previous image">Previous</button>
+            <div class="photo">
+                <img src="images/Paolo.article.jpg" alt="A scenic view of Paolo's article">
+            </div>
+            <div class="photo">
+                <img src="images/Paolo.article2.jpeg" alt="Another scenic view from Paolo's article">
+            </div>
+            <div class="photo">
+                <img src="images/Paolointerview.avif" alt="Another scenic view from Paolo's article">
+            </div>
+            <button id="next" aria-label="Next image">Next</button>
+        </div>
+    </main>
+    
+    
+    <footer>
+        <p>Contact us at <a href="mailto:email@example.com">email@example.com</a></p>
+    </footer>
+
+    <script>
+        const photos = document.querySelectorAll('.photo');
+        let currentPhotoIndex = 0;
+
+        function updatePhotoDisplay() {
+            photos.forEach((photo, index) => {
+                photo.style.display = index === currentPhotoIndex ? 'block' : 'none';
+            });
+        }
+
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        document.getElementById('prev').addEventListener('click', function() {
+            currentPhotoIndex = (currentPhotoIndex > 0) ? currentPhotoIndex - 1 : photos.length - 1;
+            updatePhotoDisplay();
+        });
+
+        document.getElementById('next').addEventListener('click', function() {
+            currentPhotoIndex = (currentPhotoIndex < photos.length - 1) ? currentPhotoIndex + 1 : 0;
+            updatePhotoDisplay();
+        });
+
+        // Initial display
+        updatePhotoDisplay();
+    </script>
+</body>
+</html>
